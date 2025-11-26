@@ -1,4 +1,6 @@
-function LaunchList(props) {
+import "./launchList.css";
+
+function LaunchList({ launches, onHover, hoveredLaunch }) {
 
     return (
         <aside className="aside" id="launchesContainer">
@@ -7,8 +9,13 @@ function LaunchList(props) {
 
 
                 <ul>
-                    {props.launches.map(launch => {
-                        return <li key={launch.id}>{launch.name}</li>
+                    {launches.map(launch => {
+                        return <li key={launch.id}
+                                   className={hoveredLaunch?.id === launch.id ? "highlighted" : ""}
+                                   onMouseEnter={() => onHover(launch)}
+                                   onMouseLeave={() => onHover(null)}
+
+                        >{launch.name}</li>
                     })}
                 </ul>
             </div>
